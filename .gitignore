@@ -1,0 +1,7 @@
+# Compiled source files #
+#########################
+*.m~
+
+JesperPerssonIntro
+*.zip
+.ds_store
