@@ -1,5 +1,5 @@
 function [ population ] = InitializePopulation( populationSize, numberOfGenes)
-population = randi([0,1],populationSize, numberOfGenes);
+population = fix(2.0*rand(populationSize, numberOfGenes));
 
 
 end

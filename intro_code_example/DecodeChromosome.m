@@ -11,7 +11,7 @@ x(1) = -variableRange + 2*variableRange*x(1)/(1-2^(-nHalf));
 
 x(2) = 0.0;
 for j = 1:nHalf
-    x(2) = x(2) + chromosome(j)*2^(-j);
+    x(2) = x(2) + chromosome(j+nHalf)*2^(-j);
 end
 x(2) = -variableRange + 2*variableRange*x(2)/(1-2^(-nHalf));
 
