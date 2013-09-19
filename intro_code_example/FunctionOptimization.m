@@ -1,12 +1,14 @@
-populationSize = 30;
-numberOfGenes = 40;
-crossoverProbability = 0.8;
-mutationProbability = 0.025;
-tournamentSelectionParameter = 0.75;
-variableRange = 3.0;
-numberOfGenerations = 100;
+populationSize                  = 30;
+numberOfGenes                   = 40;
+crossoverProbability            = 0.8;
+mutationProbability             = 0.025;
+tournamentSelectionParameter    = 0.75;
+variableRange                   = 3.0;
+numberOfGenerations             = 100;
+
 fitness = zeros(populationSize,1);
 
+% ---------- Configure figues for plotting ---------- %
 fitnessFigureHandle = figure;
 hold on;
 set(fitnessFigureHandle, 'Position', [50,50,500,200]);
@@ -26,9 +28,9 @@ limit = fix(2*variableRange/delta) + 1;
 -variableRange:delta:variableRange);
 zValues = zeros(limit,limit);
 for j = 1:limit
-for k = 1:limit
-zValues(j,k) = EvaluateIndividual([xValues(j,k) yValues(j,k)]);
-end
+    for k = 1:limit
+        zValues(j,k) = EvaluateIndividual([xValues(j,k) yValues(j,k)]);
+    end
 end
 surfl(xValues,yValues,zValues)
 colormap gray;
@@ -41,6 +43,8 @@ hold off;
 drawnow;
 
 population = InitializePopulation(populationSize, numberOfGenes);
+
+% -------------------- Main Algorithm -------------------- %
 
 for iGeneration = 1:numberOfGenerations
     maximumFitness = 0.0; % Assumes non-negative fitness values!
@@ -84,7 +88,7 @@ for iGeneration = 1:numberOfGenerations
 
     tempPopulation(1,:) = population(bestIndividualIndex,:);
     population = tempPopulation;
-    
+    % ---------- Update figures, redraw with new values ---------- %
     plotvector = get(bestPlotHandle,'YData');
     plotvector(iGeneration) = maximumFitness;
     set(bestPlotHandle,'YData',plotvector);
