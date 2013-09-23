@@ -32,15 +32,12 @@ while true                  % Use manual break to avoid having to manually take 
     end
     
     xNextStep = NewtonRaphsonStep(xCurrStep, xFirstDerivative, xSecondDerivative);
-    
     iterates(i) = xCurrStep;% Store step
 
     if abs(xNextStep - xCurrStep) < tolerance   % Algorithm done, break and return result
         break
     end
-    
-    
-    
+
     i = i + 1;              % Iterate
     xCurrStep = xNextStep;
 end

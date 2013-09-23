@@ -6,10 +6,6 @@ function [ dCoefficients ] = PolynomialDifferentiation( coefficients, k)
 % Return    -    The resulting polynomial.
 %
 
-if k >= 3   % Only calculate first and second derivatives
-    dCoefficients = [];
-    return
-end
 lengthOfInput = length(coefficients);
 
 for i=1:k                   % Derivive k times
