@@ -89,6 +89,7 @@ for iGeneration = 1:numberOfGenerations
     tempPopulation(1,:) = population(bestIndividualIndex,:);
     population = tempPopulation;
     % ---------- Update figures, redraw with new values ---------- %
+    
     plotvector = get(bestPlotHandle,'YData');
     plotvector(iGeneration) = maximumFitness;
     set(bestPlotHandle,'YData',plotvector);
