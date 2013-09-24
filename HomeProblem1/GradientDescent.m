@@ -11,6 +11,6 @@ while (true)
     end
 end
 
-fprintf('Found minimum with penalty %i at %.3f,%.3f \n',penalty, iterate(1), iterate(2));
+fprintf('Penalty: %i \t X1: %.3f, X2: %.3f \n',penalty, iterate(1), iterate(2));
 end
 
