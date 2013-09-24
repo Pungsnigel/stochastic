@@ -51,7 +51,7 @@ for iGeneration = 1:numberOfGenerations
     
     for i = 1:populationSize
         chromosome = population(i,:);
-        x = DecodeChromosome(chromosome, variableRange);
+        x = DecodeChromosome(chromosome,2, variableRange);
         decodedPopulation(i,:) = x;
         fitness(i) = EvaluateIndividual(x);
         if (fitness(i) > maximumFitness)
