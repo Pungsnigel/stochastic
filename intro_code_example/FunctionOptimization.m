@@ -5,7 +5,10 @@ mutationProbability             = 0.025;
 tournamentSelectionParameter    = 0.75;
 variableRange                   = 3.0;
 numberOfGenerations             = 100;
+numberOfVariables               = 2;
+tournamentSize                  = 2;
 
+% Preallocate for performance.
 fitness = zeros(populationSize,1);
 
 % ---------- Configure figues for plotting ---------- %
@@ -51,7 +54,7 @@ for iGeneration = 1:numberOfGenerations
     
     for i = 1:populationSize
         chromosome = population(i,:);
-        x = DecodeChromosome(chromosome,2, variableRange);
+        x = DecodeChromosome(chromosome, numberOfVariables, variableRange);
         decodedPopulation(i,:) = x;
         fitness(i) = EvaluateIndividual(x);
         if (fitness(i) > maximumFitness)
@@ -64,8 +67,8 @@ for iGeneration = 1:numberOfGenerations
     tempPopulation = population;
 
     for i = 1:2:populationSize
-        i1 = TournamentSelect(fitness,tournamentSelectionParameter);
-        i2 = TournamentSelect(fitness,tournamentSelectionParameter);
+        i1 = TournamentSelect(fitness,tournamentSelectionParameter, tournamentSize);
+        i2 = TournamentSelect(fitness,tournamentSelectionParameter, tournamentSize);
         chromosome1 = population(i1,:);
         chromosome2 = population(i2,:);
         
