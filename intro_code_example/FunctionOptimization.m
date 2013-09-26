@@ -1,17 +1,20 @@
-populationSize                  = 30;
-numberOfGenes                   = 70;
+populationSize                  = 150;
+numberOfGenes                   = 50;
 crossoverProbability            = 0.8;
 mutationProbability             = 0.025;
 tournamentSelectionParameter    = 0.75;
 variableRange                   = 5.0;
 numberOfGenerations             = 100;
 numberOfVariables               = 2;
-tournamentSize                  = 2;
+tournamentSize                  = 4;
 elitismDegree                   = 1;
 
+sumOfFunctionValues = 0.0;
+sumOfX1 = 0.0;
+sumOfX2 = 0.0;
+for iRun = 1:20
 % Preallocate for performance.
 fitness = zeros(populationSize,1);
-
 
 population = InitializePopulation(populationSize, numberOfGenes);
 
@@ -61,9 +64,16 @@ for iGeneration = 1:numberOfGenerations
     population = InsertBestIndividual(tempPopulation, bestIndividual, elitismDegree);
 
 end % Loop over generations
+    sumOfFunctionValues = sumOfFunctionValues + 1/maximumFitness;
+    sumOfX1 = sumOfX1 + xBest(1);
+    sumOfX2 = sumOfX2 + xBest(2);
+    1/maximumFitness
+    xBest
+end % Loop over runs
 
-% Print final result
-disp('xBest');
-disp(xBest);
-disp('maximumFitness');
-disp(maximumFitness);
+% Print final result.
+% Since fitness value is just 1/function value, we can simply print
+% 1/fitness value to find the function value.
+fprintf('Found avarage min of value %.3f at X1: %.3f, X2 %.3f \n',...
+sumOfFunctionValues/20, sumOfX1/20, sumOfX2/20);
+    
