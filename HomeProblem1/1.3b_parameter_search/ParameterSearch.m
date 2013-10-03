@@ -2,9 +2,9 @@
 % ------------------ Parameters fit for testing ------------------ %
 populationSize                  = 100;
 crossoverProbability            = 1.0;
-mutationProbability             = 0.02;
+mutationProbability             = 0.1;
 tournamentSelectionParameter    = 0.7;
-tournamentSize                  = 2;
+tournamentSize                  = 4;
 
 % ----------------------- Fixed Parameters ----------------------- %
 numberOfGenes                   = 60;
