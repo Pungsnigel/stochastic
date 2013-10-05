@@ -1,19 +1,19 @@
-function x = DecodeChromosome(chromosome, numberOfVariables, variableRange)
+function x = DecodeChromosome(chromosome)
 
+cityLocations = LoadCityLocations;
 nGenes = length(chromosome);
-bitsPerVariable = nGenes/numberOfVariables;
-x = zeros(numberOfVariables, 1);            % Preallocate for performance.
-
-for i = 1:numberOfVariables
-    x(i) = 0.0;
-    for j = 1:bitsPerVariable
-        % First iteration should take bits 1-bitsPerVariable, second 
-        % iteration should take bits bitsPerVariable-2*bitsPerVariable etc.
-        
-        startOfVariable = (i-1) * bitsPerVariable;
-        x(i) = x(i) + chromosome(startOfVariable + j)*2^(-j);
-    end
-    x(i) = -variableRange + 2*variableRange*x(i)/(1-2^(-bitsPerVariable));
+x = 0.0;
+for iCity = 1:nGenes
+    firstCityX = cityLocation(iCity,1);
+    firstCityY = cityLocations(iCity,2);
+    secondCityX = cityLocations(iCity+1,1);
+    secondCityY = cityLocations(iCity+1,2);
+    
+    distance = sqrt((firstCityX-secondCityX)^2 + (firstCityY-secondCityY)^2);
+    x = x + distance;
 end
+
+% Add distance from last to first, to complete the path
+
 end
 
