@@ -1,7 +1,7 @@
 function iSelected = TournamentSelect(fitness, tournamentSelectionParameter, tournamentSize)
 
 
-populationSize = size(fitness, 1);
+populationSize = length(fitness);
 
 % Preallocate for performance. Use a x*2-vector in order to be able to
 % store fitness-values for each individual - makes sorting easier.
