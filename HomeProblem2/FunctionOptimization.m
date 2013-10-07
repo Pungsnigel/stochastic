@@ -1,14 +1,16 @@
 % ------------------- Global Variables ------------------- %
 populationSize                  = 100;
 numberOfGenes                   = length(LoadCityLocations);
-mutationProbability             = 0.025;
+mutationProbability             = 0.015;
 tournamentSelectionParameter    = 0.75;
-numberOfGenerations             = 100;
-tournamentSize                  = 4;
+numberOfGenerations             = 1000;
+tournamentSize                  = 6;
 
 % Preallocate for performance.
 fitness = zeros(populationSize,1);
 population = InitializePopulation(populationSize, numberOfGenes);
+bestIndividual = population(1,:);
+bestFitness = 0.0;
 
 % -------------------- Main Algorithm -------------------- %
 
@@ -17,7 +19,11 @@ for iGeneration = 1:numberOfGenerations
     for i = 1:populationSize
         chromosome = population(i,:);
         x = DecodeChromosome(chromosome);
-        fitness(i) = EvaluateIndividualb(x);
+        fitness(i) = EvaluateIndividual(x);
+        if (fitness(i) > bestFitness)
+           bestIndividual = population(i,:);
+           bestFitness = fitness(i);
+        end
     end
 
     tempPopulation = population;
@@ -41,3 +47,4 @@ for iGeneration = 1:numberOfGenerations
     
 end % Loop over generations
     
+disp(1/bestFitness);
