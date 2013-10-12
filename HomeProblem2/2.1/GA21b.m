@@ -1,11 +1,12 @@
 % ------------------- Global Variables ------------------- %
 cityLocations                   = LoadCityLocations;
-populationSize                  = 1000;
+populationSize                  = 500;
 numberOfGenes                   = length(cityLocations);
-mutationProbability             = 0.015;
+mutationProbability             = 0.02;
 tournamentSelectionParameter    = 0.75;
-numberOfGenerations             = 1000;
-tournamentSize                  = 6;
+numberOfGenerations             = 7500;
+tournamentSize                  = 5;
+elitismDegree                   = 2;
 
 tspFigure = InitializeTspPlot(cityLocations, [0 20 0 20]); 
 connection = InitializeConnections(cityLocations);
@@ -47,7 +48,7 @@ for iGeneration = 1:numberOfGenerations
     end
     
     % Update population to new generation.
-    population = tempPopulation;
+    population = InsertBestIndividual(tempPopulation, bestIndividual, elitismDegree);
     
 end % Loop over generations
 

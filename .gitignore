@@ -5,3 +5,8 @@
 JesperPerssonIntro
 *.zip
 .ds_store
+
+# LaTeX-files #
+*.aux
+*.log
+*.gz
