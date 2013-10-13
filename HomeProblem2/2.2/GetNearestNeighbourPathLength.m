@@ -14,8 +14,8 @@ for iVisited = 1:nrOfCities-1 % Loop untill visited all cities
         end
         
         % Calculate distance between current city and the one searched       
-        path = [currentCity, iCity];
-        distance = GetPathLength(path, cityLocation);
+        edge = [currentCity, iCity];
+        distance = GetEdgeLength(edge, cityLocation);
                 
         % If we have not found a distance yet, or the distance is better
         % than any earlier, update the bestDistance and bestCityIndex

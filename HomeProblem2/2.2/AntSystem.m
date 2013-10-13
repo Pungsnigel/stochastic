@@ -44,7 +44,7 @@ minimumPathLength = inf;
 
 iIteration = 0;
 
-while (minimumPathLength > targetPathLength)
+while (1)
  iIteration = iIteration + 1;
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,7 +71,6 @@ while (minimumPathLength > targetPathLength)
 
  deltaPheromoneLevel = ComputeDeltaPheromoneLevels(pathCollection,pathLengthCollection);  % To do: write the ComputeDeltaPheromoneLevels function
  pheromoneLevel = UpdatePheromoneLevels(pheromoneLevel,deltaPheromoneLevel,rho);          % To do: write the UpdatePheromoneLevels function
-
 end
 
 

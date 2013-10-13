@@ -10,6 +10,9 @@ for individualPath = 1:size(pathCollection,1)
         from   = pathCollection(individualPath,city);
         deltaPheromoneLevel(from,to) = deltaPheromoneLevel(from,to) + individualAntPheromone;
     end
+    to = pathCollection(individualPath,1);
+    from = pathCollection(individualPath,end);
+    deltaPheromoneLevel(from,to) = deltaPheromoneLevel(from,to) + individualAntPheromone;
 end
 
 end

@@ -10,7 +10,7 @@ for i = 1:nrOfCities
         end
 
         edge = [i,l];
-        distance = GetPathLength(edge, cityLocation);
+        distance = GetEdgeLength(edge, cityLocation);
         visibility(i,l) = 1/distance;
     end
 end

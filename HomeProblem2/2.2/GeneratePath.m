@@ -21,8 +21,5 @@ while(~isempty(available))               % Loop until every city is visited
     available(available == node) = [];   % Remove city from unvisited cities.
 end
 
-% Manually insert start as last city in the path.
-path = [path, start];
-
 end
 

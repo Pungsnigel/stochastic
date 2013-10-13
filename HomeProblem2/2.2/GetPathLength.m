@@ -2,18 +2,20 @@ function [ pathLength ] = GetPathLength(path,cityLocation)
 pathLength = 0.0;
 
 for iCity = 2:length(path)
-    
     from = path(iCity-1);
-    city1X = cityLocation(from,1);
-    city1Y = cityLocation(from,2);
-    
     to = path(iCity);
-    city2X = cityLocation(to,1);
-    city2Y = cityLocation(to,2);
+    edge = [from, to];
 
-    distance = sqrt( (city1X - city2X)^2 + (city1Y - city2Y)^2);
+    distance = GetEdgeLength(edge, cityLocation);
     pathLength = pathLength + distance;
 end
+
+% Make sure we count the way from last city back to first as well.
+from = path(end);
+to = path(1);
+edge = [from, to];
+distance = GetEdgeLength(edge, cityLocation);
+pathLength = pathLength + distance;
     
 end
 
