@@ -43,8 +43,9 @@ visibility = GetVisibility(cityLocation);
 minimumPathLength = inf;
 
 iIteration = 0;
+bestPath = [];
 
-while (1)
+while (iIteration <= 2000)
  iIteration = iIteration + 1;
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -60,6 +61,7 @@ while (1)
     minimumPathLength = pathLength;
     disp(sprintf('Iteration %d, ant %d: path length = %.5f',iIteration,k,minimumPathLength));
     PlotPath(connection,cityLocation,path);
+    bestPath = path;
   end
   pathCollection = [pathCollection; path];           
   pathLengthCollection = [pathLengthCollection; pathLength];

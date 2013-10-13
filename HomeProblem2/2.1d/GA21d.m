@@ -1,10 +1,10 @@
 % ------------------- Global Variables ------------------- %
 cityLocations                   = LoadCityLocations;
-populationSize                  = 100;
+populationSize                  = 400;
 numberOfGenes                   = length(cityLocations);
 mutationProbability             = 0.02;
 tournamentSelectionParameter    = 0.75;
-numberOfGenerations             = 100;
+numberOfGenerations             = 5000;
 tournamentSize                  = 5;
 elitismDegree                   = 2;
 

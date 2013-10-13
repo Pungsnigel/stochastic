@@ -4,7 +4,7 @@ populationSize                  = 500;
 numberOfGenes                   = length(cityLocations);
 mutationProbability             = 0.02;
 tournamentSelectionParameter    = 0.75;
-numberOfGenerations             = 7500;
+numberOfGenerations             = 5000;
 tournamentSize                  = 5;
 elitismDegree                   = 2;
 
