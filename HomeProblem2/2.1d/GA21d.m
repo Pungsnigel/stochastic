@@ -1,10 +1,10 @@
 % ------------------- Global Variables ------------------- %
 cityLocations                   = LoadCityLocations;
-populationSize                  = 500;
+populationSize                  = 100;
 numberOfGenes                   = length(cityLocations);
 mutationProbability             = 0.02;
 tournamentSelectionParameter    = 0.75;
-numberOfGenerations             = 7500;
+numberOfGenerations             = 100;
 tournamentSize                  = 5;
 elitismDegree                   = 2;
 
@@ -14,7 +14,7 @@ connection = InitializeConnections(cityLocations);
 % Preallocate for performance.
 fitness = zeros(populationSize,1);
 
-population = InitializePopulation(populationSize, numberOfGenes);
+population = InitializePopulation(populationSize, numberOfGenes, mutationProbability);
 bestIndividual = population(1,:);
 bestFitness = 0.0;
 

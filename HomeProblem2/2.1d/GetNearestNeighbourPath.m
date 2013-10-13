@@ -1,15 +1,14 @@
-function [ length ] = GetNearestNeighbourPathLength( cityLocation )
-length = 0.0;
+function [ path ] = GetNearestNeighbourPath( cityLocation )
 nrOfCities = size(cityLocation,1);
-visited(1) = randi(nrOfCities);
+path(1) = randi(nrOfCities);
 
 for iVisited = 1:nrOfCities-1 % Loop untill visited all cities
     bestDistance = inf;
     bestCityIndex = 0;
-    currentCity = visited(iVisited);
+    currentCity = path(iVisited);
     
     for iCity = 1:nrOfCities% Find next city
-        if(ismember(iCity,visited))
+        if(ismember(iCity,path))
             continue
         end
         
@@ -25,15 +24,9 @@ for iVisited = 1:nrOfCities-1 % Loop untill visited all cities
             bestCityIndex = iCity;
         end
     end
-    % Add distance to total path length, and add city to visited.
-    length = length + bestDistance;    
-    visited(iVisited+1) = bestCityIndex;
+    % Add city to visited.
+    path(iVisited+1) = bestCityIndex;
 end
 
-%Finish by manuelly insert distance between last city and first
-
-path = [bestCityIndex, visited(1)];
-distance = GetPathLength(path, cityLocation);
-length = length + distance;
 
 end
