@@ -1,19 +1,22 @@
 % ------------------- Parameters ------------------- %
 populationSize      = 20;
-nrOfVariables       = 2;
+nrOfVariables       = 5;
 alpha               = 1;
 deltaTime           = 1;
-xMax                = 10;
-xMin                = -xMax;
+varMax              = 30;
+varMin              = -varMax;
 cognitiveComponent  = 2;
 socialComponent     = 2;
-vMax                = (xMax - xMin)/deltaTime;
-nbrOfRuns           = 400;
+vMax                = (varMax - varMin)/deltaTime;
+nbrOfRuns           = 1000;
 inertia             = 1.4;
 inertiaDecRate      = 0.9;
+lowerInertiaLimit   = 0.3;
 
 % ----------------- Initialization ----------------- %
-[swarmPositions, swarmVelocities] = InitializePopulation(populationSize, nrOfVariables,[xMin, xMax] , alpha, deltaTime);
+[swarmPositions, swarmVelocities] = InitializePopulation(populationSize, nrOfVariables,[varMin, varMax] , alpha, deltaTime);
+% Truncation
+swarmPositions = round(swarmPositions);
 individualBestPositions = swarmPositions;
 swarmBestPosition = swarmPositions(1,:);
 
@@ -22,15 +25,16 @@ for iIteration = 1:nbrOfRuns
     
     for i=1:populationSize
         particle = swarmPositions(i, :);
-        indFit = EvaluateIndividual(particle);
-        fValPBest = EvaluateIndividual(individualBestPositions(i, :));
-        fValSBest = EvaluateIndividual(swarmBestPosition);
-        if indFit > fValPBest
-            individualBestPositions(i, :) = particle;
-        end
-        if indFit > fValSBest
-            swarmBestPosition = particle;
-            sBestUpdates = sBestUpdates + 1;
+        if (ParticleInRange(particle, [varMin, varMax]))
+            indFit = EvaluateIndividual(particle);
+            fValPBest = EvaluateIndividual(individualBestPositions(i, :));
+            fValSBest = EvaluateIndividual(swarmBestPosition);
+            if indFit < fValPBest
+                individualBestPositions(i, :) = particle;
+            end
+            if indFit < fValSBest
+                swarmBestPosition = particle;
+            end
         end
     end
     
@@ -42,12 +46,15 @@ for iIteration = 1:nbrOfRuns
         
     % Update position by moving a step with the new velocity
     swarmPositions = UpdatePositions(swarmPositions, swarmVelocities, deltaTime);
+    
+    % truncation
+    swarmPositions = round(swarmPositions);
         
     % Update inertia
     if (inertia > lowerInertiaLimit)
         inertia = 0.9*inertia;
     end
 end
-swarmBest = FunctionF(swarmBestPosition);
-fprintf('Found minimum %.2f at %.2f, %.2f \n', swarmBest, swarmBestPosition(1), swarmBestPosition(2));
+swarmBest = EvaluateIndividual(swarmBestPosition);
+fprintf('Found minimum %.2f \n', swarmBest);
     
