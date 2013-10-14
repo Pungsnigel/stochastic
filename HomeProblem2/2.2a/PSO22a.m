@@ -22,13 +22,13 @@ for iIteration = 1:nbrOfRuns
     
     for i=1:populationSize
         particle = swarmPositions(i, :);
-        indFit = FunctionF(particle);
-        fValPBest = FunctionF(individualBestPositions(i, :));
-        fValSBest = FunctionF(swarmBestPosition);
-        if indFit < fValPBest
+        indFit = EvaluateIndividual(particle);
+        fValPBest = EvaluateIndividual(individualBestPositions(i, :));
+        fValSBest = EvaluateIndividual(swarmBestPosition);
+        if indFit > fValPBest
             individualBestPositions(i, :) = particle;
         end
-        if indFit < fValSBest
+        if indFit > fValSBest
             swarmBestPosition = particle;
             sBestUpdates = sBestUpdates + 1;
         end
